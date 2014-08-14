@@ -8,35 +8,35 @@ Route::get('/', array(
 /* Authenticated group */
 Route::group( array('before' => 'auth'), function() {
 
+    // Bring list of user's Types into views for sidebar menu generation
+    View::share( 'types', User::find( Auth::user()->id )->types );
+
+    // CSRF Protection
     Route::group( array('before' => 'csrf'), function() {
 
-        /* Change password(POST) */
         Route::post('/account/change-password', array(
                 'as' => 'account-change-password-post',
                 'uses' => 'AccountController@postChangePassword',
             ));
 
-    /* Create Type(POST) */
-    Route::post('/type/create', array(
-            'as' => 'type-create-post',
-            'uses' => 'TypeController@postCreateType',
-        ));
+        Route::post('/type/create', array(
+                'as' => 'type-create-post',
+                'uses' => 'TypeController@postCreateType',
+            ));
 
     });
 
-    /* Change password(GET) */
     Route::get('/account/change-password', array(
             'as' => 'account-change-password',
             'uses' => 'AccountController@getChangePassword',
         ));
 
-    /* Create Type(GET) */
+
     Route::get('/type/create', array(
             'as' => 'type-create',
             'uses' => 'TypeController@getCreateType',
         ));
 
-    /* Sign Out (GET) */
     Route::get('/account/sign-out',
 
         array(

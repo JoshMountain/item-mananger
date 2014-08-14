@@ -15,10 +15,11 @@
     <h4>Item Types</h4>
     <ul class="nav nav-sidebar">
         <li><a href="{{ URL::route('type-create') }}"><span class="glyphicon glyphicon-plus-sign"></span> Add Item Type</a>
-        <li><a href="">Bands</a></li>
-        <li><a href="">Books</a></li>
-        <li><a href="">Video Games</a></li>
+        @foreach($types as $type)
+            <li><a href="#">{{ $type->label }}</a></li>
+        @endforeach
     </ul>
+
 @endif
 
 <p id="copyright">

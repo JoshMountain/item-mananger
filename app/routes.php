@@ -9,7 +9,9 @@ Route::get('/', array(
 Route::group( array('before' => 'auth'), function() {
 
     // Bring list of user's Types into views for sidebar menu generation
-    View::share( 'types', User::find( Auth::user()->id )->types );
+    if ( Auth::check() ){
+        View::share( 'types', User::find( Auth::user()->id )->types );
+    }
 
     // CSRF Protection
     Route::group( array('before' => 'csrf'), function() {

@@ -7,6 +7,11 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
+	// Define a 1-N relationship
+	public function types() {
+	    return $this->hasMany('Type');
+	}
+
 	protected $fillable = array('email', 'username', 'password', 'password_temp', 'code', 'active');
 
 	use UserTrait, RemindableTrait;
@@ -25,9 +30,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
-	// Define a 1-N relationship
-	public function types() {
-	    return $this->hasMany('Type');
-	}
+
 
 }

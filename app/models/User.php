@@ -12,6 +12,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	    return $this->hasMany('Type');
 	}
 
+	// Define a 1-N relationship
+	public function states() {
+	    return $this->hasMany('State');
+	}
+
 	protected $fillable = array('email', 'username', 'password', 'password_temp', 'code', 'active');
 
 	use UserTrait, RemindableTrait;

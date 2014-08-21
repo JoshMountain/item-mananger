@@ -2,7 +2,17 @@
 
 @section('content')
     @if( Auth::check() )
-        <h1 class="page-header">Dashboard</h1>
+        <!-- Forms Components Header -->
+        <div class="content-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="header-section">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Forms Components Header -->
     @else
         <div class="jumbotron">
               <div class="container">

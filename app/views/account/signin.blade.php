@@ -1,31 +1,53 @@
 @extends('layout.main')
 
 @section('content')
-    <h1 class="page-header">Sign In</h1>
-    <form action="{{ URL::route('account-sign-in-post') }}" method="post">
-        <div class="form-group<?php if( $errors->has('email') ) { echo ' has-error'; }?>">
-            <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Email"{{ (Input::old('email')) ? ' value="' . e( Input::old('email') ) . '"' : '' }}>
-            @if( $errors->has('email') )
-                <span class="help-block">{{ $errors->first('email') }}</span>
-            @endif
+<!-- Form Components Row -->
+<div class="row">
+    <div class="col-md-6">
+        <!-- Horizontal Form Block -->
+        <div class="block">
+            <!-- Horizontal Form Title -->
+            <div class="block-title">
+                <h2>Sign In</h2>
+            </div>
+            <!-- END Horizontal Form Title -->
+
+            <!-- Horizontal Form Content -->
+            <form action="{{ URL::route('account-sign-in-post') }}" method="post" class="form-horizontal form-bordered">
+                <div class="form-group<?php if( $errors->has('email') ) { echo ' has-error'; }?>">
+                    <label class="col-md-3 control-label" for="email">Email</label>
+                    <div class="col-md-9">
+                        <input type="email" id="email" name="email" class="form-control"{{ (Input::old('email')) ? ' value="' . e( Input::old('email') ) . '"' : '' }}>
+                        <span class="help-block">{{ ( $errors->has('email') ) ? $errors->first('email') : 'Please enter your email' }}</span>
+                    </div>
+                </div>
+                <div class="form-group<?php if( $errors->has('password') ) { echo ' has-error'; }?>">
+                    <label class="col-md-3 control-label" for="password">Password</label>
+                    <div class="col-md-9">
+                        <input type="password" id="password" name="password" class="form-control">
+                        <span class="help-block">{{ ( $errors->has('password') ) ? $errors->first('password') : 'Please enter your password' }}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Remember Me</label>
+                    <div class="col-md-9">
+                        <label class="switch switch-primary">
+                            <input type="checkbox" name="remember" id="remember" checked><span></span>
+
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group form-actions">
+                    <div class="col-md-9 col-md-offset-3">
+                        {{ Form::token() }}
+                        <button type="submit" class="btn btn-block btn-effect-ripple btn-primary">Sign In</button>
+                        <span class="help-block"><a href="{{ URL::route('account-forgot-password') }}">Forgot Password?</a></span>
+                    </div>
+                </div>
+            </form>
+            <!-- END Horizontal Form Content -->
         </div>
-        <div class="form-group<?php if( $errors->has('password') ) { echo ' has-error'; }?>">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-            @if( $errors->has('password') )
-                <span class="help-block">{{ $errors->first('password') }}</span>
-            @endif
-        </div>
-        <div class="form-group">
-            <label for="remember">Stay signed in</label>
-            <input type="checkbox" name="remember" id="remember" />
-        </div>
-        {{ Form::token() }}
-        <input type="submit" value="Sign In" />
-    </form>
-    <p>
-        <br/>
-        <a href="{{ URL::route('account-forgot-password') }}">Forgot Password?</a>
-    </p>
+        <!-- END Horizontal Form Block -->
+    </div>
+</div>
 @stop

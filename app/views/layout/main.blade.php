@@ -109,12 +109,6 @@
                                 </a>
                             </li>
                             <!-- END Main Sidebar Toggle Button -->
-
-                            <!-- Header Link -->
-                            <li class="hidden-xs animation-fadeInQuick">
-                                <a href=""><strong>Dashboard</strong></a>
-                            </li>
-                            <!-- END Header Link -->
                         </ul>
                         <!-- END Left Header Navigation -->
 
@@ -138,25 +132,6 @@
                                     <li class="dropdown-header">
                                         <strong>{{ Auth::user()->username }}</strong>
                                     </li>
-                                    <li>
-                                        <a href="page_app_email.html">
-                                            <i class="fa fa-inbox fa-fw pull-right"></i>
-                                            Inbox
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="page_app_social.html">
-                                            <i class="fa fa-pencil-square fa-fw pull-right"></i>
-                                            Profile
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="page_app_media.html">
-                                            <i class="fa fa-picture-o fa-fw pull-right"></i>
-                                            Media Manager
-                                        </a>
-                                    </li>
-                                    <li class="divider"><li>
                                     <li>
                                         <a href="{{ URL::route('account-change-password') }}">
                                             <i class="gi gi-lock fa-fw pull-right"></i>

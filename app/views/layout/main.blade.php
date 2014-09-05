@@ -157,7 +157,11 @@
                     <div id="page-content">
 
                         @if(Session::has('global'))
-                            {{ Session::get('global') }}
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    {{ Session::get('global') }}
+                                </div>
+                            </div>
                         @endif
 
                         @yield('content')

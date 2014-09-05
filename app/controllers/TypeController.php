@@ -34,11 +34,12 @@ class TypeController extends BaseController {
             $type->user_id      = Auth::user()->id;
             $type->save();
 
-            return Redirect::route('home')
-                   ->with('global', '<p class="bg-success">Your new item type "' . $type_label . '" was added successfully.</p>');
+            return Redirect::route('type-create')
+                   ->with('global', '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><p>Your new type "' . $type_label . '" has been created successfully!</p></div>');
 
         }
 
     }
 
 }
+

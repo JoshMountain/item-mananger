@@ -11,7 +11,7 @@
                 <!-- END Horizontal Form Title -->
 
                 <!-- Horizontal Form Content -->
-                <form action="{{ URL::route('type-create-post') }}" method="post" class="form-horizontal form-bordered">
+                <form action="{{ URL::route('type-create-post') }}" method="post" class="form-horizontal form-bordered" autocomplete="off">
                     <div class="form-group<?php if( $errors->has('label') ) { echo ' has-error'; }?>">
                         <label class="col-md-3 control-label" for="label" maxlength="128"{{ (Input::old('label')) ? ' value="' . e( Input::old('label') ) . '"' : '' }}>Type Label</label>
                         <div class="col-md-9">

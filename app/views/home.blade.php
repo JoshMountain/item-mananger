@@ -2,7 +2,7 @@
 
 @section('content')
     @if( Auth::check() )
-        <!-- Forms Components Header -->
+        <!-- Header -->
         <div class="content-header">
             <div class="row">
                 <div class="col-sm-12">
@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-        <!-- END Forms Components Header -->
+        <!-- END Header -->
     @else
         <div class="jumbotron">
               <div class="container">

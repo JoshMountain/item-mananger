@@ -15,7 +15,7 @@
                             <!-- Sidebar Navigation -->
                             <ul class="sidebar-nav">
                                 <li>
-                                    <a href="{{ URL::route('home') }}" class=" active"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Dashboard</span></a>
+                                    <a href="{{ URL::route('home') }}"{{ ( URL::route('home') === URL::current() ) ? ' class="active"' : '' }}><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Dashboard</span></a>
                                 </li>
                                 <li class="sidebar-separator">
                                     <i class="fa fa-ellipsis-h"></i>
@@ -42,7 +42,7 @@
                                 <li>
                                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-more_items sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Types</span></a>
                                     <ul>
-                                        <li>
+                                        <li{{ ( URL::route('type-create') === URL::current() ) ? ' class="active"' : '' }}>
                                             <a href="{{ URL::route('type-create') }}">Add New Type</a>
                                         </li>
                                     </ul>

@@ -8,11 +8,6 @@ Route::get('/', array(
 /* Authenticated group */
 Route::group( array('before' => 'auth'), function() {
 
-    // Bring list of user's Types into views for sidebar menu generation
-    if ( Auth::check() ){
-        View::share( 'types', User::find( Auth::user()->id )->types );
-    }
-
     // CSRF Protection
     Route::group( array('before' => 'csrf'), function() {
 
@@ -26,6 +21,11 @@ Route::group( array('before' => 'auth'), function() {
                 'uses' => 'TypeController@postCreateType',
             ));
 
+        Route::post('/state/create', array(
+                'as' => 'state-create-post',
+                'uses' => 'StateController@postCreateState',
+            ));
+
     });
 
     Route::get('/account/change-password', array(
@@ -37,6 +37,11 @@ Route::group( array('before' => 'auth'), function() {
     Route::get('/type/create', array(
             'as' => 'type-create',
             'uses' => 'TypeController@getCreateType',
+        ));
+
+    Route::get('/state/create', array(
+            'as' => 'state-create',
+            'uses' => 'StateController@getCreateState',
         ));
 
     Route::get('/account/sign-out',

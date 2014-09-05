@@ -8,7 +8,7 @@ class StateController extends BaseController {
 
     }
 
-    public function postStateType() {
+    public function postCreateState() {
 
         // Validate input for new Type
         $validator = Validator::make(Input::all(),
@@ -32,8 +32,9 @@ class StateController extends BaseController {
             $state->user_id      = Auth::user()->id;
             $state->save();
 
-            return Redirect::route('home')
-                   ->with('global', '<p class="bg-success">Your new item state "' . $state_label . '" was added successfully.</p>');
+            return Redirect::route('state-create')
+                   ->with('global', '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><p>Your new state "' . $state_label . '" has been created successfully!</p></div>');
+
 
         }
 

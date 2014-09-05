@@ -34,8 +34,8 @@
                                 <li>
                                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-tags sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">States</span></a>
                                     <ul>
-                                        <li>
-                                            <a href="#">Add New State</a>
+                                        <li{{ ( URL::route('state-create') === URL::current() ) ? ' class="active"' : '' }}>
+                                            <a href="{{ URL::route('state-create') }}">Add New State</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -50,11 +50,11 @@
 
                                 @else
 
-                                <li>
+                                <li{{ ( URL::route('account-sign-in') === URL::current() ) ? ' class="active"' : '' }}>
                                     <a href="{{ URL::route('account-sign-in') }}"><i class="gi gi-keys sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Sign In</span></a>
                                 </li>
 
-                                <li>
+                                <li{{ ( URL::route('account-create') === URL::current() ) ? ' class="active"' : '' }}>
                                     <a href="{{ URL::route('account-create') }}"><i class="gi gi-plus sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Register</span></a>
                                 </li>
 

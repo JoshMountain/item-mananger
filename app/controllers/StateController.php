@@ -13,7 +13,7 @@ class StateController extends BaseController {
         // Validate input for new Type
         $validator = Validator::make(Input::all(),
             array(
-                'label' => 'required|min:3|max:128|unique:states',
+                'label' => 'required|min:3|max:128|unique:states,label,null,id,user_id,' . Auth::user()->id,
             )
         );
 
@@ -25,15 +25,13 @@ class StateController extends BaseController {
 
         } else {
 
-            $state_label   = Input::get('label');
-
             $state              = new State;
-            $state->label        = $state_label;
+            $state->label        = Input::get('label');
             $state->user_id      = Auth::user()->id;
             $state->save();
 
             return Redirect::route('state-create')
-                   ->with('global', '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><p>Your new state "' . $state_label . '" has been created successfully!</p></div>');
+                   ->with('global', '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><p>Your new state "' . Input::get('label') . '" has been created successfully!</p></div>');
 
 
         }

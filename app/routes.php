@@ -1,112 +1,183 @@
 <?php
 
-Route::get('/', array(
-    'as' => 'home',
-    'uses' => 'HomeController@home',
-));
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register all of the routes for an application.
+| It's a breeze. Simply tell Laravel the URIs it should respond to
+| and give it the Closure to execute when that URI is requested.
+|
+*/
 
-/* Authenticated group */
-Route::group( array('before' => 'auth'), function() {
+/** ------------------------------------------
+ *  Page Routes
+ *  ------------------------------------------
+ */
 
-    // CSRF Protection
-    Route::group( array('before' => 'csrf'), function() {
+    Route::get('/', array(
+        'as' => 'home',
+        'uses' => 'HomeController@home',
+    ));
 
-        Route::post('/account/change-password', array(
-                'as' => 'account-change-password-post',
-                'uses' => 'AccountController@postChangePassword',
+
+/** ------------------------------------------
+ *  User Routes
+ *  ------------------------------------------
+ */
+
+    /** ------------------------------------------
+     *  Authenticated Group
+     *  ------------------------------------------
+     */
+    Route::group( array('before' => 'auth'), function() {
+
+        /** ------------------------------------------
+         *  CSRF Group
+         *  ------------------------------------------
+         */
+        Route::group( array('before' => 'csrf'), function() {
+
+            Route::post('/account/change-password', array(
+                    'as' => 'account-change-password-post',
+                    'uses' => 'AccountController@postChangePassword',
+                ));
+
+            Route::post('/type/create', array(
+                    'as' => 'type-create-post',
+                    'uses' => 'TypeController@postCreateType',
+                ));
+
+            Route::post('/state/create', array(
+                    'as' => 'state-create-post',
+                    'uses' => 'StateController@postCreateState',
+                ));
+
+            Route::post('/item/create', array(
+                    'as' => 'item-create-post',
+                    'uses' => 'ItemController@postCreateItem',
+                ));
+
+        });
+
+        /** ------------------------------------------
+         *  Non-CSRF Group
+         *  ------------------------------------------
+         */
+        Route::get('/account/change-password', array(
+                'as' => 'account-change-password',
+                'uses' => 'AccountController@getChangePassword',
             ));
 
-        Route::post('/type/create', array(
-                'as' => 'type-create-post',
-                'uses' => 'TypeController@postCreateType',
+
+        Route::get('/type/create', array(
+                'as' => 'type-create',
+                'uses' => 'TypeController@getCreateType',
             ));
 
-        Route::post('/state/create', array(
-                'as' => 'state-create-post',
-                'uses' => 'StateController@postCreateState',
+        Route::get('/state/create', array(
+                'as' => 'state-create',
+                'uses' => 'StateController@getCreateState',
+            ));
+
+        Route::get('/item/create', array(
+                'as' => 'item-create',
+                'uses' => 'ItemController@getCreateItem',
+            ));
+
+        Route::get('/item/list', array(
+                'as' => 'item-list',
+                'uses' => 'ItemController@getListItems',
+            ));
+
+        Route::get('/account/sign-out',
+
+            array(
+                'as'    => 'account-sign-out',
+                'uses'  => 'AccountController@getSignOut',
             ));
 
     });
 
-    Route::get('/account/change-password', array(
-            'as' => 'account-change-password',
-            'uses' => 'AccountController@getChangePassword',
+
+    /** ------------------------------------------
+     *  Unauthenticated (guest) Group
+     *  ------------------------------------------
+     */
+    Route::group( array('before' => 'guest'), function() {
+
+        /** ------------------------------------------
+         *  CSRF Group
+         *  ------------------------------------------
+         */
+        Route::group( array('before' =>'csrf'), function() {
+
+            /* Create account (POST) */
+            Route::post('/account/create', array(
+                'as'    => 'account-create-post',
+                'uses'  => 'AccountController@postCreate',
+            ));
+
+            /* Sign In (POST) */
+            Route::post('/account/sign-in', array(
+                'as'    => 'account-sign-in-post',
+                'uses'  => 'AccountController@postSignIn',
+            ));
+
+            /* Forgot Password (POST) */
+            Route::post('/account/forgot-password', array(
+                'as'    => 'account-forgot-password-post',
+                'uses'  => 'AccountController@postForgotPassword',
+            ));
+
+        });
+
+        /** ------------------------------------------
+         *  Non-CSRF Group
+         *  ------------------------------------------
+         */
+
+        /* Forgot Password (GET) */
+        Route::get('/account/forgot-password', array(
+            'as'    => 'account-forgot-password',
+            'uses'  => 'AccountController@getForgotPassword',
         ));
 
-
-    Route::get('/type/create', array(
-            'as' => 'type-create',
-            'uses' => 'TypeController@getCreateType',
+        /* Recover forgotten password */
+        Route::get('/account/recover/{code}', array(
+            'as'    => 'account-recover',
+            'uses'  => 'AccountController@getRecover',
         ));
 
-    Route::get('/state/create', array(
-            'as' => 'state-create',
-            'uses' => 'StateController@getCreateState',
+        /* Sign In (GET) */
+        Route::get('/account/sign-in', array(
+            'as'    => 'account-sign-in',
+            'uses'  => 'AccountController@getSignIn',
         ));
 
-    Route::get('/account/sign-out',
-
-        array(
-            'as'    => 'account-sign-out',
-            'uses'  => 'AccountController@getSignOut',
+        /* Create account (GET) */
+        Route::get('/account/create', array(
+            'as'    => 'account-create',
+            'uses'  => 'AccountController@getCreate',
         ));
 
-});
-
-/* Unauthenticated group */
-Route::group( array('before' => 'guest'), function() {
-
-    /* CSRF protection */
-    Route::group( array('before' =>'csrf'), function() {
-
-        /* Create account (POST) */
-        Route::post('/account/create', array(
-            'as'    => 'account-create-post',
-            'uses'  => 'AccountController@postCreate',
-        ));
-
-        /* Sign In (POST) */
-        Route::post('/account/sign-in', array(
-            'as'    => 'account-sign-in-post',
-            'uses'  => 'AccountController@postSignIn',
-        ));
-
-        /* Forgot Password (POST) */
-        Route::post('/account/forgot-password', array(
-            'as'    => 'account-forgot-password-post',
-            'uses'  => 'AccountController@postForgotPassword',
+        /* New account activation */
+        Route::get('/account/activate/{code}', array(
+            'as'    => 'account-activate',
+            'uses'  => 'AccountController@getActivate',
         ));
 
     });
 
-    /* Forgot Password (GET) */
-    Route::get('/account/forgot-password', array(
-        'as'    => 'account-forgot-password',
-        'uses'  => 'AccountController@getForgotPassword',
-    ));
 
-    /* Recover forgotten password */
-    Route::get('/account/recover/{code}', array(
-        'as'    => 'account-recover',
-        'uses'  => 'AccountController@getRecover',
-    ));
+/** ------------------------------------------
+ *  API Routes
+ *  ------------------------------------------
+ */
 
-    /* Sign In (GET) */
-    Route::get('/account/sign-in', array(
-        'as'    => 'account-sign-in',
-        'uses'  => 'AccountController@getSignIn',
-    ));
 
-    /* Create account (GET) */
-    Route::get('/account/create', array(
-        'as'    => 'account-create',
-        'uses'  => 'AccountController@getCreate',
-    ));
-
-    /* New account activation */
-    Route::get('/account/activate/{code}', array(
-        'as'    => 'account-activate',
-        'uses'  => 'AccountController@getActivate',
-    ));
-
-});
+ /** ------------------------------------------
+ *  Admin Routes
+ *  ------------------------------------------
+ */

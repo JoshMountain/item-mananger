@@ -26,8 +26,11 @@
                                 <li>
                                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-cube sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Items</span></a>
                                     <ul>
-                                        <li>
-                                            <a href="#">Add New Item</a>
+                                        <li{{ ( URL::route('item-create') === URL::current() ) ? ' class="active"' : '' }}>
+                                            <a href="{{ URL::route('item-create') }}">Add New Item</a>
+                                        </li>
+                                        <li{{ ( URL::route('item-list') === URL::current() ) ? ' class="active"' : '' }}>
+                                            <a href="{{ URL::route('item-list') }}">List All Items</a>
                                         </li>
                                     </ul>
                                 </li>

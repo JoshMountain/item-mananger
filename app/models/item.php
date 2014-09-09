@@ -2,8 +2,13 @@
 
 class Item extends Eloquent
 {
-    // Define a 1-1 relationship
-    public function types() {
-        return $this->hasOne('State');
+
+    public function type() {
+        return $this->hasOne('Type', 'id', 'type_id');
     }
+
+    public function state() {
+        return $this->hasOne('State', 'id', 'state_id');
+    }
+
 }

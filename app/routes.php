@@ -59,6 +59,11 @@
                     'uses' => 'ItemController@postCreateItem',
                 ));
 
+            Route::post('/item/edit/{id}', array(
+                    'as' => 'item-edit-post',
+                    'uses' => 'ItemController@postEditItem',
+                ));
+
         });
 
         /** ------------------------------------------
@@ -89,6 +94,11 @@
         Route::get('/item/list', array(
                 'as' => 'item-list',
                 'uses' => 'ItemController@getListItems',
+            ));
+
+        Route::get('/item/edit/{id}', array(
+                'as' => 'item-edit',
+                'uses' => 'ItemController@getEditItem',
             ));
 
         Route::get('/account/sign-out',

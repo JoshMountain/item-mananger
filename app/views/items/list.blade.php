@@ -44,7 +44,7 @@
                         <td>{{ $item->type->label }}</td>
                         <td>{{ $item->state->label }}</td>
                         <td class="text-center">
-                            <a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-sm btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit Item"><i class="fa fa-pencil"></i></a>
+                            <a href="{{ URL::route('item-edit', $item->id) }}" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-sm btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit Item"><i class="fa fa-pencil"></i></a>
                             <a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-sm btn-danger" style="overflow: hidden; position: relative;" data-original-title="Delete Item"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>

@@ -1,17 +1,6 @@
 @extends('layout.main')
 
 @section('content')
-    <!-- Header -->
-    <div class="content-header">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="header-section">
-                    <h1>Viewing All Items</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- END Header -->
 
 <div class="block full">
         <!-- Table Styles Content -->
@@ -45,7 +34,7 @@
                         <td>{{ $item->state->label }}</td>
                         <td class="text-center">
                             <a href="{{ URL::route('item-edit', $item->id) }}" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-sm btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit Item"><i class="fa fa-pencil"></i></a>
-                            <a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-sm btn-danger" style="overflow: hidden; position: relative;" data-original-title="Delete Item"><i class="fa fa-times"></i></a>
+                            <a href="{{ URL::route('item-delete', $item->id) }}" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-sm btn-danger item-delete" style="overflow: hidden; position: relative;" data-original-title="Delete Item"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
                     @endforeach

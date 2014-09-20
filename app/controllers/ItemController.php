@@ -81,7 +81,7 @@ class ItemController extends BaseController {
 
         $items = Item::where('user_id', '=', Auth::user()->id)->get();
 
-        return View::make('items.list')->with('items', $items);
+        return View::make('items.list')->with('items', $items)->with('page_heading', 'Viewing All Items');
 
     }
 
@@ -99,6 +99,18 @@ class ItemController extends BaseController {
                 ->with('item', $item)
                 ->with('states', $states)
                 ->with('types', $types);
+
+    }
+
+    public function getDeleteItem($id) {
+
+        $item = Item::where('user_id', '=', Auth::user()->id)
+                ->where('id', '=', $id)
+                ->delete();
+
+        return Redirect::route('item-list')
+               ->with('global', '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><p>Your item has been deleted successfully!</p></div>');
+
 
     }
 

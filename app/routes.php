@@ -101,6 +101,11 @@
                 'uses' => 'ItemController@getEditItem',
             ));
 
+        Route::get('/item/delete/{id}', array(
+                'as' => 'item-delete',
+                'uses' => 'ItemController@getDeleteItem',
+            ));
+
         Route::get('/account/sign-out',
 
             array(

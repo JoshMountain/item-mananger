@@ -156,6 +156,20 @@
                     <!-- Page content -->
                     <div id="page-content">
 
+                        @if( isset($page_heading) )
+                            <!-- Header -->
+                            <div class="content-header">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="header-section">
+                                            <h1>{{ $page_heading }}</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END Header -->
+                        @endif
+
                         @if(Session::has('global'))
                             <div class="row">
                                 <div class="col-lg-6">
@@ -188,16 +202,21 @@
             <!-- Load and execute javascript code used only in this page -->
             <script src="{{ URL::to('js/pages/uiTables.js') }}"></script>
             <script>
-            $(function(){
-                /* Initialize Bootstrap Datatables Integration */
-                App.datatables();
+                $(function(){
+                    /* Initialize Bootstrap Datatables Integration */
+                    App.datatables();
 
-                /* Initialize Datatables */
-                $('#general-table').dataTable();
+                    /* Initialize Datatables */
+                    $('#general-table').dataTable();
 
-                /* Add placeholder attribute to the search input */
-                $('.dataTables_filter input').attr('placeholder', 'Search');
-            });
+                    /* Add placeholder attribute to the search input */
+                    $('.dataTables_filter input').attr('placeholder', 'Search');
+                });
+
+                // Confirm item deleting
+                $('.item-delete').click(function(){
+                    return confirm("Are you sure you want to delete this item?");
+                })
             </script>
         @endif
     </body>

@@ -1,2 +1,10 @@
-app/config
-error_log
+/bootstrap/compiled.php
+/vendor
+/.idea
+composer.phar
+.env.*.php
+.env.php
+.DS_Store
+Thumbs.db
+_ide_helper.php
+/app/config/local

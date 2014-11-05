@@ -24,8 +24,8 @@
                             <p>Ever wanted to track which Steam games you have completed or which products you are still waiting to ship?</p>
                             <p>Item Manager was designed to be a free, lightweight item tracking tool.</p>
                             <p>
-                            <a class="btn btn-primary btn-lg" role="button" href="{{ URL::route('account-create') }}">Create a Free Account »</a>
-                            <a class="btn btn-default btn-lg" role="button" href="{{ URL::route('account-sign-in') }}">Sign In</a>
+                                <a class="btn btn-primary btn-lg" role="button" href="{{ URL::route('account-create') }}">Create a Free Account »</a>
+                                <a class="btn btn-default btn-lg" role="button" href="{{ URL::route('account-sign-in') }}">Sign In</a>
                             </p>
                         </div>
                     </div>

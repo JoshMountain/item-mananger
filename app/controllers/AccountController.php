@@ -46,9 +46,6 @@ class AccountController extends BaseController {
 
         }
 
-        return Redirect::route('account-sign-in')
-               ->with('global', '<p class="bg-danger">There was a problem signing you in.</p>');
-
     }
 
     /* Sign the user out */
@@ -129,7 +126,7 @@ class AccountController extends BaseController {
             $user->code   = '';
 
             if( $user->save() ) {
-                return Redirect::route('home')
+                return Redirect::route('account-sign-in')
                        ->with('global', '<p class="bg-success">Account activated! You can now sign in.</p>');
 
             }
@@ -193,9 +190,6 @@ class AccountController extends BaseController {
             }
 
         }
-
-        return Redirect::route('account-change-password')
-               ->with('global', '<p class="bg-danger">Your password could not be changed, try again later.</p>');
 
     }
 

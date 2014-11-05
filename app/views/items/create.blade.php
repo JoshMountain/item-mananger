@@ -25,7 +25,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group<?php if( $errors->has('type_id') ) { echo ' has-error'; }?>">
                         <label class="col-md-3 control-label" for="type_id">Type of Item</label>
                         <div class="col-md-9">
                             <select id="type_id" name="type_id" class="select-chosen" data-placeholder="Choose an item type..." style="width: 250px; display: none;">
@@ -34,10 +34,13 @@
                                 <option value="{{ $type->id }}">{{ $type->label }}</option>
                                 @endforeach
                             </select>
+                            @if( $errors->has('type_id') )
+								<span class="help-block">{{ $errors->first('type_id') }}</span>
+							@endif
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group<?php if( $errors->has('state_id') ) { echo ' has-error'; }?>">
                         <label class="col-md-3 control-label" for="state_id">State of Item</label>
                         <div class="col-md-9">
                             <select id="state_id" name="state_id" class="select-chosen" data-placeholder="Choose an item state..." style="width: 250px; display: none;">
@@ -46,6 +49,9 @@
                                 <option value="{{ $state->id }}">{{ $state->label }}</option>
                                 @endforeach
                             </select>
+                            @if( $errors->has('state_id') )
+								<span class="help-block">{{ $errors->first('state_id') }}</span>
+							@endif
                         </div>
                     </div>
 

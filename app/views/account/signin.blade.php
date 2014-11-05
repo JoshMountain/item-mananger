@@ -3,7 +3,7 @@
 @section('content')
 <!-- Form Components Row -->
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12 col-lg-6">
         <!-- Horizontal Form Block -->
         <div class="block">
             <!-- Horizontal Form Title -->

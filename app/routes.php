@@ -93,7 +93,7 @@
                 'uses' => 'ItemController@getCreateItem',
             ));
 
-        Route::get('/item/list', array(
+        Route::get('/item/list/{page_count?}', array(
                 'as' => 'item-list',
                 'uses' => 'ItemController@getListItems',
             ));

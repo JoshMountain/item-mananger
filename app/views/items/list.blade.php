@@ -40,7 +40,18 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
+
+			<div class="row">
+				<div class="col-sm-5 hidden-xs">
+					<strong>{{ $items->getFrom() }}</strong>-<strong>{{ $items->getTo() }}</strong> of <strong>{{ $items->getTotal() }}</strong>
+				</div>
+
+				<div class="col-sm-7 col-xs-12 clearfix">
+					{{ $items->links() }}
+				</div>
+			</div>
+
+		</div>
         <!-- END Table Styles Content -->
     </div>
 

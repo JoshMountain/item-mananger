@@ -47,6 +47,8 @@ class ItemController extends BaseController {
 
     public function postEditItem($id) {
 
+		$item               = Item::find($id);
+
         // Validate input for Item changes
         $validator = Validator::make(Input::all(),
             array(
@@ -70,16 +72,16 @@ class ItemController extends BaseController {
             $item->state_id     = Input::get('state_id');
             $item->save();
 
-            return Redirect::route('item-create')
+            return Redirect::route('item-list')
                    ->with('global', '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><p>Your new item "' . Input::get('label') . '" has been edited successfully!</p></div>');
 
         }
 
     }
 
-    public function getListItems() {
+    public function getListItems($page_count = 15) {
 
-        $items = Item::where('user_id', '=', Auth::user()->id)->get();
+        $items = Item::where('user_id', '=', Auth::user()->id)->paginate($page_count);
 
         return View::make('items.list')->with('items', $items)->with('page_heading', 'Viewing All Items');
 

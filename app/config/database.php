@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'phxmade',
+			'database'  => 'itemmanager',
 			'username'  => 'homestead',
 			'password'  => 'secret',
 			'charset'   => 'utf8',
